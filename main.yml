@@ -1,0 +1,15 @@
+- hosts: localhost
+  tasks:
+    - name: Test that my module works
+      kazoo:
+          api_url:
+          auth_pass:
+          auth_user: 
+          auth_realm:
+          account_name:
+          state: enabled
+
+
+      register: result
+
+    - debug: var=result
