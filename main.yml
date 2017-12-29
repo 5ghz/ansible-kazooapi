@@ -1,12 +1,13 @@
 - hosts: localhost
   tasks:
     - name: Test that my module works
-      kazoo:
-          api_url:
+      kazoo_accounts:
+          base_url: 
           auth_pass:
-          auth_user: 
-          auth_realm:
-          account_name:
+          auth_user:
+          auth_realm: 
+          account_name: 
+          account_realm:
           state: enabled
 
 

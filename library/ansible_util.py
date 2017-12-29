@@ -21,5 +21,23 @@ def auth(ansible_module=None):
 
     return client
 
-def run_handler():
-    pass
+def run_handler(action_func=None, action_func_args=None):
+    try:
+        return action_func(*action_func_args)
+    except Exception as e:
+
+        # If there are any commonly known errors that we should provide more
+        # context for to help the users diagnose what's wrong. Handle that here
+        if "INVALID_SERVICE" in "%s" % e:
+            self.msgs.append(
+                "Services are defined by port/tcp relationship and named as they are in /etc/services (on most systems)")
+
+        if len(self.msgs) > 0:
+            module.fail_json(
+                msg='ERROR: Exception caught: %s %s' % (e, ', '.join(self.msgs))
+            )
+        else:
+            module.fail_json(msg='ERROR: Exception caught: %s' % e)
+
+
+
