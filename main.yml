@@ -1,16 +1,36 @@
 - hosts: localhost
   tasks:
-    - name: Test that my module works
+    - name: Test that create works
       kazoo_accounts:
           base_url: 
-          auth_pass:
-          auth_user:
+          auth_pass: 
+          auth_user: 
           auth_realm: 
-          account_name: 
-          account_realm:
+          account_name: myaccount
           state: enabled
+      register: result
+    - debug: var=result
 
+    - name: Test that update works
+      kazoo_accounts:
+          base_url: http://tvnow.io:8000/v2
+          auth_pass: a1s2d3QWE123
+          auth_user: superadmin
+          auth_realm: superadmin
+          account_id: "{{ result.meta.id }}"
+          timezone: 'Europe/Moscow'
+          state: update
+      register: result
+    - debug: var=result
 
+    - name: Test that delete works
+      kazoo_accounts:
+          base_url: http://tvnow.io:8000/v2
+          auth_pass: a1s2d3QWE123
+          auth_user: superadmin
+          auth_realm: superadmin
+          account_id: "{{ result.meta.id }}"
+          state: disabled
       register: result
 
     - debug: var=result
