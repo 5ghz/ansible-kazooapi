@@ -13,10 +13,10 @@
 
     - name: Test that update works
       kazoo_accounts:
-          base_url: http://tvnow.io:8000/v2
-          auth_pass: a1s2d3QWE123
-          auth_user: superadmin
-          auth_realm: superadmin
+          base_url: 
+          auth_pass: 
+          auth_user: 
+          auth_realm: 
           account_id: "{{ result.meta.id }}"
           timezone: 'Europe/Moscow'
           state: update
@@ -25,10 +25,10 @@
 
     - name: Test that delete works
       kazoo_accounts:
-          base_url: http://tvnow.io:8000/v2
-          auth_pass: a1s2d3QWE123
-          auth_user: superadmin
-          auth_realm: superadmin
+          base_url: 
+          auth_pass: 
+          auth_user: 
+          auth_realm: 
           account_id: "{{ result.meta.id }}"
           state: disabled
       register: result
